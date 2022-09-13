@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    background-color: #e5e5e596;
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
