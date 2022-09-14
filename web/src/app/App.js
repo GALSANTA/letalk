@@ -1,5 +1,5 @@
 import React from 'react';
-import api from './services/api';
+import api from '../services/api';
 import './style.css';
 import Text from '../components/Text/Text';
 import Form from '../components/Form/Form';
@@ -19,67 +19,62 @@ function App() {
 
     async function fazerSimulacao(cpf, estado, data, emprestimo, valorMes) {
 
-        const response = await api.post('/devs', {
-            cpf,
-            estado,
-            data,
-            emprestimo,
-            valorMes
-        });
+        const response = await api.get('/');
 
-        
-        // setShowEmprestimo(true)
-        // setValorRequerido("60.000,00")
-        // setTaxaJuros("1")
-        // setValorParcela("15.000,00")
-        // setMesesPagar("5")
-        // setTotalPagar("61.545,53")
-        // setTotalJuros("1545,53")
-        // setMeses([
-        //     {
-        //         saldoDevedor: "60.000,00",
-        //         juros: "600,00" ,
-        //         saldoDevedorAjustado: "60.600,00",
-        //         valorParcela: "15.000,00",
-        //         vencimento: "20/09/21"
-        //     },
+        console.log(response);
 
-        //     {
-        //         saldoDevedor: 45600,
-        //         juros: 456 ,
-        //         saldoDevedorAjustado: 46056,
-        //         valorParcela: 15000,
-        //         vencimento: "20/09/21"
-        //     },
-        //     {
-        //         saldoDevedor: 31056,
-        //         juros: 310.56,
-        //         saldoDevedorAjustado: 60600,
-        //         valorParcela: 15000,
-        //         vencimento: "20/09/21"
-        //     },
-        //     {
-        //         saldoDevedor: 16366,
-        //         juros: 163.67 ,
-        //         saldoDevedorAjustado: 60600,
-        //         valorParcela: 15000,
-        //         vencimento: "20/09/21"
-        //     },
-        //     {
-        //         saldoDevedor: 1530.23,
-        //         juros: 15.30 ,
-        //         saldoDevedorAjustado: 60600,
-        //         valorParcela: 15000,
-        //         vencimento: "20/09/21"
-        //     },
-        //     {
-        //         saldoDevedor: 0,
-        //         juros: "" ,
-        //         saldoDevedorAjustado: "",
-        //         valorParcela: "",
-        //         vencimento: ""
-        //     }
-        // ]);
+        setShowEmprestimo(true)
+        setValorRequerido("60.000,00")
+        setTaxaJuros("1")
+        setValorParcela("15.000,00")
+        setMesesPagar("5")
+        setTotalPagar("61.545,53")
+        setTotalJuros("1545,53")
+        setMeses([
+            {
+                saldoDevedor: "60.000,00",
+                juros: "600,00" ,
+                saldoDevedorAjustado: "60.600,00",
+                valorParcela: "15.000,00",
+                vencimento: "20/09/21"
+            },
+
+            {
+                saldoDevedor: 45600,
+                juros: 456 ,
+                saldoDevedorAjustado: 46056,
+                valorParcela: 15000,
+                vencimento: "20/09/21"
+            },
+            {
+                saldoDevedor: 31056,
+                juros: 310.56,
+                saldoDevedorAjustado: 60600,
+                valorParcela: 15000,
+                vencimento: "20/09/21"
+            },
+            {
+                saldoDevedor: 16366,
+                juros: 163.67 ,
+                saldoDevedorAjustado: 60600,
+                valorParcela: 15000,
+                vencimento: "20/09/21"
+            },
+            {
+                saldoDevedor: 1530.23,
+                juros: 15.30 ,
+                saldoDevedorAjustado: 60600,
+                valorParcela: 15000,
+                vencimento: "20/09/21"
+            },
+            {
+                saldoDevedor: 0,
+                juros: "" ,
+                saldoDevedorAjustado: "",
+                valorParcela: "",
+                vencimento: ""
+            }
+        ]);
     }
 
     return (
