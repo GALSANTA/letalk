@@ -4,7 +4,7 @@ import './style.css';
 function Form(props) {
 
     const [inputCPF, setInputCPF] = React.useState("CPF");
-    const [inputUF, setInputUF] = React.useState("");
+    const [inputUF, setInputUF] = React.useState("MG");
     const [inputDATA, setInputDATA] = React.useState("DATA DE NASCIMENTO");
     const [inputEMPRESTIMO, setInputEMPRESTIMO] = React.useState("QUAL O VALOR DO EMPRÉSTIMO?");
     const [inputVALORMES, setInputVALORMES] = React.useState("QUAL VALOR DESEJA PAGAR POR MÊS?");
@@ -18,7 +18,6 @@ function Form(props) {
        document.getElementById('data').type="date";
     }
 
-  
     return (
         <form className="form" onSubmit={handleSubmit}>
           <input type="text" className="input" id="" value={inputCPF} onChange={(e) => setInputCPF(e.target.value)} onMouseDown={_ => setInputCPF("")}  />

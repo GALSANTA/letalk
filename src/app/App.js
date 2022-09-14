@@ -9,72 +9,55 @@ import {Footer, Header, Main} from '../components/Bootstrap/Bootstrap';
 function App() {
 
     const [showEmprestimo, setShowEmprestimo] = React.useState(false);
-    const [valorRequerido, setValorRequerido] = React.useState()
-    const [taxaJuros, setTaxaJuros] = React.useState()
-    const [valorParcela, setValorParcela] = React.useState()
-    const [mesesPagar, setMesesPagar] = React.useState()
-    const [totalPagar, setTotalPagar] = React.useState()
-    const [totalJuros, setTotalJuros] = React.useState()
-    const [meses, setMeses] = React.useState()
+    const [valorRequerido, setValorRequerido] = React.useState();
+    const [taxaJuros, setTaxaJuros] = React.useState();
+    const [valorParcela, setValorParcela] = React.useState();
+    const [mesesPagar, setMesesPagar] = React.useState();
+    const [totalPagar, setTotalPagar] = React.useState();
+    const [totalJuros, setTotalJuros] = React.useState();
+    const [parcelas, setParcelas] = React.useState();
 
-    async function fazerSimulacao(cpf, estado, data, emprestimo, valorMes) {
+    const [dados, setDados] = React.useState();
 
-        const response = await api.get('/');
 
-        console.log(response);
+    async function fazerSimulacao(cpf, uf, nascimento, valorEmprestimo, valorParcela) {
 
+        const response = await api.post('/simular', {
+            cpf: cpf,
+            uf: uf,
+            date: nascimento,
+            valorEmprestimo: parseFloat(valorEmprestimo),
+            valorParcela: parseFloat(valorParcela)
+        });
+
+        setDados({
+            cpf,
+            uf, 
+            nascimento,
+            valorEmprestimo,
+            valorParcela, 
+            parcelas: response.data.parcelas
+        });
+        
+        setValorRequerido(response.data.valorEmprestimo)
+        setTaxaJuros(response.data.juros)
+        setValorParcela(response.data.valorParcela)
+        setMesesPagar(response.data.mesesPagar)
+        setTotalPagar(response.data.totalPagar)
+        setTotalJuros(response.data.totalJuros)
+        setParcelas(response.data.parcelas)
         setShowEmprestimo(true)
-        setValorRequerido("60.000,00")
-        setTaxaJuros("1")
-        setValorParcela("15.000,00")
-        setMesesPagar("5")
-        setTotalPagar("61.545,53")
-        setTotalJuros("1545,53")
-        setMeses([
-            {
-                saldoDevedor: "60.000,00",
-                juros: "600,00" ,
-                saldoDevedorAjustado: "60.600,00",
-                valorParcela: "15.000,00",
-                vencimento: "20/09/21"
-            },
+    }
 
-            {
-                saldoDevedor: 45600,
-                juros: 456 ,
-                saldoDevedorAjustado: 46056,
-                valorParcela: 15000,
-                vencimento: "20/09/21"
-            },
-            {
-                saldoDevedor: 31056,
-                juros: 310.56,
-                saldoDevedorAjustado: 60600,
-                valorParcela: 15000,
-                vencimento: "20/09/21"
-            },
-            {
-                saldoDevedor: 16366,
-                juros: 163.67 ,
-                saldoDevedorAjustado: 60600,
-                valorParcela: 15000,
-                vencimento: "20/09/21"
-            },
-            {
-                saldoDevedor: 1530.23,
-                juros: 15.30 ,
-                saldoDevedorAjustado: 60600,
-                valorParcela: 15000,
-                vencimento: "20/09/21"
-            },
-            {
-                saldoDevedor: 0,
-                juros: "" ,
-                saldoDevedorAjustado: "",
-                valorParcela: "",
-                vencimento: ""
-            }
-        ]);
+    async function fazerEmprestimo() {
+
+        await api.post('/emprestimo', {
+            cpf: dados.cpf,
+            uf: dados.uf,
+            date: dados.nascimento,
+            valorEmprestimo: parseFloat(dados.valorEmprestimo),
+            valorParcela: parseFloat(dados.valorParcela),
+        });
     }
 
     return (
@@ -98,7 +81,8 @@ function App() {
                         mesesPagar={mesesPagar}
                         totalJuros={totalJuros}
                         totalPagar={totalPagar}
-                        meses={meses}
+                        parcelas={parcelas}
+                        callback={fazerEmprestimo}
                     />
                     </> :
                     <></>

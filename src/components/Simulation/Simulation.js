@@ -3,11 +3,19 @@ import './style.css';
 
 function Simulation(props) {
 
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.callback();
+        alert("SEU EMPRÉSTIMO FOI EFETIVADO!")
+        window.document.location.reload(true);
+      }
+
     return (
        <section className='simulation'>
            <div className="view">
                <div className="view-area">
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Valor requerido
                         </span>
@@ -15,7 +23,7 @@ function Simulation(props) {
                             R$ {props.valorRequerido}
                         </span>
                    </div>
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Taxa de Juros
                         </span>
@@ -23,7 +31,7 @@ function Simulation(props) {
                             {props.taxaJuros}% ao mês
                         </span>
                    </div>
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Valor da parcela
                         </span>
@@ -33,7 +41,7 @@ function Simulation(props) {
                    </div>
                </div>
                <div className="view-area">
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Total de meses para quitar
                         </span>
@@ -41,7 +49,7 @@ function Simulation(props) {
                             {props.mesesPagar} meses
                         </span>
                    </div>
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Total de juros
                         </span>
@@ -49,7 +57,7 @@ function Simulation(props) {
                             R$ {props.totalJuros}
                         </span>
                    </div>
-                   <div class="widget">
+                   <div className="widget">
                         <span className="title-span">
                             Total a pagar
                         </span>
@@ -72,7 +80,7 @@ function Simulation(props) {
                 </thead>
                 <tbody>
                     {
-                        props.meses.map(item => {
+                        props.parcelas.map(item => {
                             return(
                                 <tr>
                                 <td data-label="SALDO DEVEDOR">{item.saldoDevedor}</td>
@@ -86,7 +94,11 @@ function Simulation(props) {
                     }
                 </tbody>
             </table>
-            <button className="button-green">Efetivar o empréstimo <i class="fa fa-arrow-right"></i></button>
+            <button  className="button-green" onClick={e=>handleSubmit(e)}>
+                 Efetivar o empréstimo 
+                <i className="fa fa-arrow-right"></i>
+            </button>
+
            </div>
        </section>
     )
