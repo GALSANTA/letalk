@@ -1,6 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './app/App';
+const express = require('express');
+const routes = require('./routes');
+const cors = require('cors');
+const PORT = process.env.PORT || 3000;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App/>);
+const app = express();
+app.use(cors());
+app.use(express.json()); // fazer o backend entender json
+app.use(routes);
+
+app.listen(PORT, () => {
+    console.info(`Example app listening on port ${PORT}`)
+});
