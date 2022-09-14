@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Letalk Desafio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um desafio para a vaga de desenvolvedor na Letalk.
 
-## Available Scripts
+## 1. Dependencies
 
-In the project directory, you can run:
+* Uma máquina com sistema operacional ubuntu:
+    * node v16.17.0.
+		```
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+        source ~/.bashrc
+        nvm install v16.17.0
+		```
+    * [git version control](https://git-scm.com/);
 
-### `npm start`
+## 2. Como rodar localmente.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2.1. Rodando o front-end
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone https://github.com/GALSANTA/letalk
+git checkout front-end
+export BACKEND="http://localhost:3333"
+npm install
+npm start
+```
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2.1. Rodando o back-end
 
-### `npm run build`
+Em outro terminal execute os seguintes comandos
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/GALSANTA/letalk
+git checkout back-end
+npm install
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. Sobre a aplicação
 
-### `npm run eject`
+### Coisas que ficaram faltando.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Tratar no front-end as mensagens de erro de operação que não podiam ser feita no back-end, exemplos: "se o empréstimo for menor que R$ 500000", "se a parcela é abaixo de 1% do valor do empéstimo".
+* Garantir que os inputs da simulação, quando estão vazios e o usuário clicou mas não digitou, tenham como voltar o placeholder padrão.
+* Salvar cada uma das parcelas no banco e vincular ao cliente a fim de implementação futura de funcionalidade que verifica se a parcela foi paga.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+###  Coisas a mais.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* É responsivo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 4. Endpoints da aplicação.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [Back-end da aplicação](https://letalk-back-end.herokuapp.com/)
+* [Front-end da aplicação](https://letalk-front-end.herokuapp.com/)
+* [Rota para pegar as informações salvas no banco](https://letalk-back-end.herokuapp.com/all)
